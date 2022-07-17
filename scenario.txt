@@ -1,0 +1,36 @@
+Single failure at start (Round 1)
+		config.workerState[1] = make(map[int]int)
+		config.workerState[1][0] = -1
+		totalFailedWorkers++
+		numOfFailures++
+
+N-1 failures at start (Round 1)
+	config.workerState[1] = make(map[int]int)
+	for i := 0; i < config.totalWorkers-1; i++ {
+		config.workerState[1][i] = -1
+        totalFailedWorkers++
+		numOfFailures++
+	}
+
+Alive Failed Alternate Workers at Start (Round 1)
+	config.workerState[1] = make(map[int]int)
+	for i := 0; i < config.totalWorkers; i++ {
+		if i%2 == 1 {
+			config.workerState[1][i] = -1
+            totalFailedWorkers++
+			numOfFailures++
+		}
+	}
+
+50% random, independent worker failure (Round 1)
+		config.workerState[1] = make(map[int]int)
+		for i := 0; i < config.totalWorkers; i++ {
+			randomNum := rand.NormFloat64()
+			if randomNum > 0 {
+				config.workerState[1][i] = -1
+				totalFailedWorkers++
+				numOfFailures++
+			}
+		}
+
+
